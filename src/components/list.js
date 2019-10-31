@@ -2,6 +2,7 @@ import React from 'react';
 import useSettings from '../context/settings';
 import { useEffect } from 'react';
 import { When } from '../components/if/index';
+import Auth from './auth/auth';
 
 export default function List(props) {
   let settings = useSettings();
@@ -29,9 +30,11 @@ export default function List(props) {
               <button onClick={() => props.toggleDetails(item._id)}>
                 Details
               </button>
-              <button onClick={() => props.deleteItem(item._id)}>
-                Delete
-              </button>
+              <Auth capability="delete">
+                <button onClick={() => props.deleteItem(item._id)}>
+                  Delete
+                </button>
+              </Auth>
             </li>
           </When>
         ))}
